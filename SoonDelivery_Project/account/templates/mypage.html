@@ -18,18 +18,23 @@
                 </div>
                 <div class="top-white-space"></div>
             </div>
-            <p class="change_image_buttons"><label for='change_image_button'>프로필 사진 변경 </label>/<label for='change_password_button'> 비밀번호 변경</label></p>
             <div id="img-div">
                 {% if details.image %}
-                <label for='change_img'><p><img id="profile-img" src="{{ details.image.url }}" width="200" height="200" alt="없음"></p></label>
+                    <label for='change_img'><p class="image-wraper"><img id="profile-img" src="{{ details.image.url }}" alt="없음"></p></label>
+                {% else %}
+                    <label for='change_img'><p class="image-wraper"><img id="profile-img" src="{% static 'image/default-user-profile-pic.png' %}" alt="없음"></p></label>
                 {% endif %}
             </div>
             <div id="center-container">
                 <form action="{% url 'mypage' details.id %}" method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
-                    <p><input type="file" name="image" id="change_img"></p>
-                    <button name="change_image" id="change_image_button">변경</button>
-                    <p class="info"><strong>이름  </strong>{{details.nickname}}</p>
+                    <p><input type="file" name="image" id="change_img" onchange="setThubnail(event)"></p>
+                    <div class="button-area">
+                        <button name="change_image" id="change_image_button">프로필 사진 저장</button>
+                    </div>
+                    <div id="name-area">
+                        <p class="name">{{details.nickname}}</p>
+                    </div>
                     <p class="info"><strong>ID  </strong>{{details.username}}</p>
                     <p class="info"><strong>이메일  </strong>{{details.school_email}}</p>
                     <p class="info"><strong>현재 비밀번호 &nbsp; </strong><input type="password" name="old_password" placeholder="현재 비밀번호"></p>
@@ -37,10 +42,18 @@
                     {% if error %}
                     {{error}}
                     {% endif %}
-                    <button name="change_password" id="change_password_button">변경</button>
+                    <div class="button-area">
+                        <button name="change_password" id="change_password_button">비밀번호 변경</button>
+                    </div>
                 </form>
+                <div class="button-area margin-top">
+                    <a href="{% url 'logout' %}">
+                        <button id="logout-button">로그아웃</button>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
+    <script src="{% static 'js/mypage.js' %}"></script>
 </body>
 </html>
