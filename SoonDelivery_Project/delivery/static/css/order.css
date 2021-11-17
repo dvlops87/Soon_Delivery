@@ -126,6 +126,10 @@ body {
   margin-bottom: 10px;
 }
 
+.order-textarea:focus {
+  outline: none;
+}
+
 /* 버튼 영역 시작 */
 
 #button-area {
