@@ -1,3 +1,10 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanskr.css);
+
+* {
+  font-family: "Noto Sans KR", sans-serif;
+  color: #707070;
+}
+
 html {
   font-size: 10px;
   height: 100%;
