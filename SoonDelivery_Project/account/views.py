@@ -120,13 +120,13 @@ def my_delivery_history(request, user_id=0):
     if user_id == 0:
         redirect('login')
     try:
-        delivery_history = delivery_info.objects.filter(delivery_man=user_id) 
+        delivery_history = delivery_info.objects.filter(delivery_man=user_id)[::-1]
         return render(request, 'my_delivery_history.html', {'delivery_history':delivery_history})
     except ValueError:
         return redirect('login')
 
 def my_order_history(request, user_id):
-    order_history =delivery_info.objects.filter(delivery_owner=user_id)
+    order_history =delivery_info.objects.filter(delivery_owner=user_id)[::-1]
     return render(request, 'my_order_history.html', {'order_history':order_history})
 
 def delivery_detail(request, delivery_id):
