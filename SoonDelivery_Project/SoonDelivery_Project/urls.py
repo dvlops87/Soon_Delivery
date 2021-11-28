@@ -40,6 +40,7 @@ urlpatterns = [
     path('mypage/<str:user_id>', a.mypage, name='mypage'),
     path('user/api/checkNickname', a.checkNickname),
     path('user/api/checkUsername', a.checkUsername),
+    path('user/api/checkEmail', a.checkEmail),
     path('check/', a.check, name='check'),
     # path('mypage/<str:user_id>', a.update, name='update'),
     
