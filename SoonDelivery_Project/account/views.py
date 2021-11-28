@@ -77,7 +77,7 @@ def user_signup(request):
             user_email = user.school_email
             email = EmailMessage(mail_subject, message, to=[user_email])
             email.send()
-            return redirect('home')
+            return render(request, 'finish_signup.html')
         except IntegrityError:
             return render(request, 'check.html')
     return render(request, 'signup.html')
@@ -200,6 +200,18 @@ def checkNickname(request):
 def checkUsername(request):
     try:
         user = User.objects.get(username=request.GET['username'])
+    except Exception as e:
+        user = None
+    result = {
+        'result':'success',
+        # 'data' : model_to_dict(user)  # console에서 확인
+        'data' : "not exist" if user is None else "exist"
+    }
+    return JsonResponse(result)
+
+def checkEmail(request):
+    try:
+        user = User.objects.get(school_email=request.GET['school_email'])
     except Exception as e:
         user = None
     result = {
