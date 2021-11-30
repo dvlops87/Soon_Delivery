@@ -87,7 +87,7 @@ def check(request):
 
 def user_logout(request):
     logout(request)
-    return redirect('home')
+    return redirect('login')
 
 def find_id(request):
     if request.method == "POST":
@@ -164,7 +164,7 @@ def finish_order(request, delivery_id):
 def mypage(request, user_id=0):
     if user_id == 0:
         redirect('login')
-    else :
+    else:
         try: 
             details = get_object_or_404(User, id=user_id)
             if request.method == "POST" and 'change_password' in request.POST:
