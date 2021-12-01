@@ -11,7 +11,7 @@ import json
 #     return render(request, 'welcome.html')
 
 def home(request):
-    order_list = delivery_info.objects.filter(is_delivered=0)
+    order_list = delivery_info.objects.filter(is_delivered=0)[::-1]
     return render(request, 'main.html', {'order_list':order_list})
 
 def order(request, user_id=0):
