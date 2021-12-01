@@ -24,6 +24,7 @@
                 {% else %}
                     <label for='change_img'><p class="image-wraper"><img id="profile-img" src="{% static 'image/default-user-profile-pic.png' %}" alt="없음"></p></label>
                 {% endif %}
+                <p>프로필 사진은 jpg, png 파일만 가능합니다</p>
             </div>
             <div id="center-container">
                 <form action="{% url 'mypage' details.id %}" method="POST" enctype="multipart/form-data">
@@ -38,7 +39,8 @@
                     <p class="info"><strong>ID  </strong>{{details.username}}</p>
                     <p class="info"><strong>이메일  </strong>{{details.school_email}}</p>
                     <p class="info"><strong>현재 비밀번호 &nbsp; </strong><input type="password" name="old_password" placeholder="현재 비밀번호"></p>
-                    <p class="info"><strong>새로운 비밀번호  </strong><input type="password" name="new_password" placeholder="현재 비밀번호"></p>
+                    <p class="info"><strong>새로운 비밀번호  </strong><input type="password" name="new_password" placeholder="새로운 비밀번호"></p>
+                    <p class="info"><strong>비밀번호 확인 </strong><input type="password" name="verify_password" placeholder="비밀번호 확인"></p>
                     {% if error %}
                     {{error}}
                     {% endif %}

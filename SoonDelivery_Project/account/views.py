@@ -169,10 +169,16 @@ def mypage(request, user_id=0):
             details = get_object_or_404(User, id=user_id)
             if request.method == "POST" and 'change_password' in request.POST:
                 input_password = request.POST.get("old_password")
+                new_password = request.POST.get("new_password")
+                verify_password = request.POST.get("verify_password")
                 if check_password(input_password, details.password):
-                    details.set_password(request.POST.get("new_password"))
-                    details.save()
-                    return render(request, 'mypage.html', {'details':details})
+                    if check_password(new_password, verify_password):
+                        details.set_password(request.POST.get("new_password"))
+                        details.save()
+                        return render(request, 'mypage.html', {'details':details})
+                    else:
+                        error = '비밀번호가 일치하지 않습니다.'
+                        return render(request, 'mypage.html', {'details':details, 'error':error})
                 else:
                     error = '현재 비밀번호가 올바르지 않습니다'
                     return render(request, 'mypage.html', {'details':details, 'error':error})
