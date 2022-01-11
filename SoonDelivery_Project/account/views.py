@@ -94,7 +94,7 @@ def find_id(request):
         user_email = request.POST["school_email"]
         user = User.objects.get(school_email = user_email)
         message = render_to_string('find_email.html',                         {
-            'username': user.username,
+            'username': user.nickname,
             'password': user.password
         })
         mail_subject = "[순부름] 아이디 찾기 메일입니다."
