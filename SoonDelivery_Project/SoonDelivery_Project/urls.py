@@ -19,6 +19,7 @@ import delivery.views as d
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
+from django.conf.urls import include
 account = 'account'
 
 
@@ -49,4 +50,6 @@ urlpatterns = [
     path('start_delivery/<int:user_id>/<str:order_id>', d.start_delivery, name="start_delivery"),
 
     path('<str:room_name>/', d.chat, name="chat"),
+
+    path('chat/', include('chat.urls')),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
