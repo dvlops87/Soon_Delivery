@@ -79,6 +79,48 @@
                     }
                 })
             });
+            $('#email_check').click(function(){
+                var school_email = $('#school_email').val()
+                if(school_email == ''){
+                    alert('이메일을 입력해주세요.')
+                    return;
+                }
+                $.ajax({
+                    url:'/user/api/checkEmail?school_email='+school_email,
+                    type:'get',
+                    dataType:'json',
+                    success:function(response){
+                        if(response.result != 'success'){
+                            console.error(response.data)
+                            return;
+                        }
+                        if(response.data == 'exist'){
+                            alert("존재하는 이메일 입니다!");
+                            $('#school_email').val('').focus();
+                            return;
+                        }else{
+                            document.getElementById('school_email').readOnly = true;
+                            alert("사용 가능한 이메일 입니다!");
+                            return;
+                        }
+                    },
+                    error : function(xhr, error){
+                        alert("서버와의 통신에서 문제가 발생했습니다.");
+                        console.error("error : " + error);
+                    }
+                })
+            });
+            $('#password_check').click(function(){
+                var p1 = document.getElementById('password1').value;
+                var p2 = document.getElementById('password2').value;
+                if( p1 != p2 ) {
+                  alert("비밀번호가 일치 하지 않습니다");
+                  return false;
+                } else{
+                  alert("비밀번호가 일치합니다");
+                  return true;
+                } 
+            });
         });
     </script>
     <!-- 메인컨테이너 시작 -->
@@ -87,9 +129,11 @@
         <div id="signup-container">
             <!-- top-title-area 시작 -->
             <div id="top-title-area">
+                <img src="{% static 'img/back-icon.svg' %}" onclick="history.back()" alt="뒤로가기">
                 <div class="top-title">
                     <p>회원가입</p>
                 </div>
+                <div class="top-white-space"></div>
             </div>
             <!-- top-title-area 끝 -->
 
@@ -119,7 +163,16 @@
                         <p>비밀번호</p>
                     </div>
                     <div class="input-area">
-                        <input class="input-box" type="password" name="password" placeholder="비밀번호 입력" autocomplete="off" required><br>
+                        <input class="input-box" type="password" id="password1" name="password" placeholder="비밀번호 입력"required><br>
+                    </div>
+                </div>
+                <div class="item">
+                    <div class="middle-title">
+                        <p>비밀번호 확인</p>
+                    </div>
+                    <div class="input-area">
+                        <input class="input-box" type="password" id="password2" name="password" placeholder="비밀번호 재입력"required><br>
+                        <button class="white-button" id="password_check" type="button">비밀번호 확인</button>
                     </div>
                 </div>
                 <div class="item">
@@ -127,7 +180,8 @@
                         <p>이메일</p>
                     </div>
                     <div class="input-area">
-                        <input class="input-box" type="text" name="school_email" placeholder="이메일 주소 입력" autocomplete="off" required><br>
+                        <input class="input-box" type="text" id="school_email" name="school_email" placeholder="이메일 주소 입력"required><br>
+                        <button class="white-button" id="email_check" type="button">중복 확인</button>
                     </div>
                 </div>
                 <div class="item">

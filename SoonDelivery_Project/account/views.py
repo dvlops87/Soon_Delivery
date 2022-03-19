@@ -77,7 +77,7 @@ def user_signup(request):
             user_email = user.school_email
             email = EmailMessage(mail_subject, message, to=[user_email])
             email.send()
-            return redirect('home')
+            return render(request, 'finish_signup.html')
         except IntegrityError:
             return render(request, 'check.html')
     return render(request, 'signup.html')
@@ -87,7 +87,7 @@ def check(request):
 
 def user_logout(request):
     logout(request)
-    return redirect('home')
+    return redirect('login')
 
 def find_id(request):
     if request.method == "POST":
@@ -120,13 +120,13 @@ def my_delivery_history(request, user_id=0):
     if user_id == 0:
         redirect('login')
     try:
-        delivery_history = delivery_info.objects.filter(delivery_man=user_id) 
+        delivery_history = delivery_info.objects.filter(delivery_man=user_id)[::-1]
         return render(request, 'my_delivery_history.html', {'delivery_history':delivery_history})
     except ValueError:
         return redirect('login')
 
 def my_order_history(request, user_id):
-    order_history =delivery_info.objects.filter(delivery_owner=user_id)
+    order_history =delivery_info.objects.filter(delivery_owner=user_id)[::-1]
     return render(request, 'my_order_history.html', {'order_history':order_history})
 
 def delivery_detail(request, delivery_id):
@@ -164,15 +164,21 @@ def finish_order(request, delivery_id):
 def mypage(request, user_id=0):
     if user_id == 0:
         redirect('login')
-    else :
+    else:
         try: 
             details = get_object_or_404(User, id=user_id)
             if request.method == "POST" and 'change_password' in request.POST:
                 input_password = request.POST.get("old_password")
+                new_password = request.POST.get("new_password")
+                verify_password = request.POST.get("verify_password")
                 if check_password(input_password, details.password):
-                    details.set_password(request.POST.get("new_password"))
-                    details.save()
-                    return render(request, 'mypage.html', {'details':details})
+                    if check_password(new_password, verify_password):
+                        details.set_password(request.POST.get("new_password"))
+                        details.save()
+                        return render(request, 'mypage.html', {'details':details})
+                    else:
+                        error = '비밀번호가 일치하지 않습니다.'
+                        return render(request, 'mypage.html', {'details':details, 'error':error})
                 else:
                     error = '현재 비밀번호가 올바르지 않습니다'
                     return render(request, 'mypage.html', {'details':details, 'error':error})
@@ -200,6 +206,18 @@ def checkNickname(request):
 def checkUsername(request):
     try:
         user = User.objects.get(username=request.GET['username'])
+    except Exception as e:
+        user = None
+    result = {
+        'result':'success',
+        # 'data' : model_to_dict(user)  # console에서 확인
+        'data' : "not exist" if user is None else "exist"
+    }
+    return JsonResponse(result)
+
+def checkEmail(request):
+    try:
+        user = User.objects.get(school_email=request.GET['school_email'])
     except Exception as e:
         user = None
     result = {

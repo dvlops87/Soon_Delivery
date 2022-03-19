@@ -26,7 +26,7 @@ account = 'account'
 urlpatterns = [
     path('admin/', admin.site.urls),
     # path('', a.home, name="home"),
-    path('login/', a.user_login, name='login'),
+    path('', a.user_login, name='login'),
     path('logout/', a.user_logout, name='logout'),
     path('signup/', a.user_signup, name='signup'),
     path('activate/<str:uid64>/<str:token>', a.activate, name='activate'),
@@ -41,10 +41,11 @@ urlpatterns = [
     path('mypage/<str:user_id>', a.mypage, name='mypage'),
     path('user/api/checkNickname', a.checkNickname),
     path('user/api/checkUsername', a.checkUsername),
+    path('user/api/checkEmail', a.checkEmail),
     path('check/', a.check, name='check'),
     # path('mypage/<str:user_id>', a.update, name='update'),
-    
-    path('', d.home, name="home"),
+    # path('', d.welcome, name="welcome"),
+    path('main/', d.home, name="home"),
     path('order/<str:user_id>', d.order, name='order'),
     path('order_delivery/<str:order_id>', d.order_delivery, name="order_delivery"),
     path('start_delivery/<int:user_id>/<str:order_id>', d.start_delivery, name="start_delivery"),
