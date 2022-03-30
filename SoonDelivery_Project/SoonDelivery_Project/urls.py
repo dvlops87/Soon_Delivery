@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 import account.views as a
+import chat.views as c
 import delivery.views as d
 from django.urls import path
 from django.conf import settings
@@ -49,5 +50,5 @@ urlpatterns = [
     path('order_delivery/<str:order_id>', d.order_delivery, name="order_delivery"),
     path('start_delivery/<int:user_id>/<str:order_id>', d.start_delivery, name="start_delivery"),
 
-    path('<str:room_name>/', d.chat, name="chat"),
+    path('<str:room_name>/', c.room, name="room"),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
