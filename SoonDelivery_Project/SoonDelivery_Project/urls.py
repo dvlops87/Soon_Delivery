@@ -46,6 +46,7 @@ urlpatterns = [
     path('check/', a.check, name='check'),
     # path('mypage/<str:user_id>', a.update, name='update'),
     # path('', d.welcome, name="welcome"),
+    path('chat/', c.chat, name="chat"),
     path('main/', d.home, name="home"),
     path('order/<str:user_id>', d.order, name='order'),
     path('order_delivery/<str:order_id>', d.order_delivery, name="order_delivery"),
