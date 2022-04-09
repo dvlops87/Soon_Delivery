@@ -235,10 +235,14 @@ footer {
 }
 
 .menu-explain {
+  font-family: "Noto Sans KR", sans-serif;
+  color: #707070;
   font-size: 10px;
   color: #404040;
   text-align: center;
   margin: 0;
+  height: 15px;
+  line-height: 15px;
 }
 
 .footer-img {

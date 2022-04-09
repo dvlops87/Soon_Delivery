@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/font.css' %}">
     <link rel="stylesheet" href="{% static 'css/delivery.css' %}">
     <title>Detail</title>
 </head>
@@ -27,6 +28,7 @@
             <!-- top-title-area 끝 -->
             <!-- 중앙 컨테이너 시작 -->
             <div id="center-container">
+                <p id="room-id">{{order_list.id}}_{{user.id}}</p>
                 <p class="description">{{order_list.delivery_owner.nickname}} 님의 주문서</p>
                 <div id="order-area">
                     <div>
@@ -57,10 +59,11 @@
                 <a href="{% url 'my_order_history' user.id %}">
                     <button class="blue big-button" id="onclick_order" onclick="">확인</button>
                 </a>
+            <!-- 정상적인 경우 -->
             {% else %}
-                <a href="{% url 'start_delivery' user.id order_list.id %}">
+                <!-- <a href="{% url 'start_delivery' user.id order_list.id %}"> -->
                     <button class="blue big-button" id="onclick_order" onclick="">배달하기</button>
-                </a>
+                <!-- </a> -->
             {% endif %}
         <!-- 주문하기 폼 끝 -->
             <!-- 여백 시작 -->
@@ -72,8 +75,8 @@
     <!-- 메인컨테이너 끝 -->
     <script>
         document.querySelector('#onclick_order').onclick = function(e) {
-            var roomName = document.querySelector('#name').value;
-            window.location.pathname = '/chat/' + roomName + '/';
+            var roomId = document.querySelector('#room-id').innerText;
+            window.location.pathname = '/chat/' + roomId + '/';
         };
     </script>
     <!-- footer 시작 -->
