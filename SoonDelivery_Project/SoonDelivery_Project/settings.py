@@ -32,7 +32,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'chat',
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'account.apps.AccountConfig',
+    'chat.apps.ChatConfig',
     'delivery.apps.DeliveryConfig',
     'six',
 ]
@@ -158,12 +159,4 @@ AUTHENTICATION_BACKENDS = (
 )
 
 # Channels
-ASGI_APPLICATION = 'SoonDelivery_Project.routing.application'
-CHANNEL_LAYERS = {
-    'default': {
-        'BACKEND': 'channels_redis.core.RedisChannelLayer',
-        # 'CONFIG': {
-        #     "hosts": [('127.0.0.1', 6379)],
-        # },
-    },
-}
+ASGI_APPLICATION = 'SoonDelivery_Project.asgi.application'

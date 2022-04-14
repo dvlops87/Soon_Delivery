@@ -46,11 +46,11 @@ urlpatterns = [
     path('check/', a.check, name='check'),
     # path('mypage/<str:user_id>', a.update, name='update'),
     # path('', d.welcome, name="welcome"),
-    path('chat/', c.chat, name="chat"),
+    path('chat/<str:user_id>', c.chat, name="chat"),
+    path('chat/str:user_id/<str:room_name>/', c.room, name="room"),
     path('main/', d.home, name="home"),
     path('order/<str:user_id>', d.order, name='order'),
     path('order_delivery/<str:order_id>', d.order_delivery, name="order_delivery"),
     path('start_delivery/<int:user_id>/<str:order_id>', d.start_delivery, name="start_delivery"),
 
-    path('<str:room_name>/', c.room, name="room"),
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
