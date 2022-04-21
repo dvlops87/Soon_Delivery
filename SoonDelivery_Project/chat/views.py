@@ -4,7 +4,9 @@ def chat(request, user_id = 0):
   if user_id == 0:
     redirect('login')
   
-  return render(request, 'chat/chat.html')
+  return render(request, 'chat/chat.html', {
+    'user_id': user_id
+  })
 
 def room(request, room_name):
     return render(request, 'chat/room.html', {
