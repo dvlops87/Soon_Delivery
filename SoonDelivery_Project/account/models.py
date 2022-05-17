@@ -12,6 +12,6 @@ class User(AbstractUser):
     school_number = models.CharField(max_length=8,default='')
     rating_order = models.IntegerField(default=0)
     rating_delivery = models.IntegerField(default=0)
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
     image = models.ImageField(upload_to = "userImage/", blank=True, null=True)
     is_trial =models.BooleanField(default=False)
