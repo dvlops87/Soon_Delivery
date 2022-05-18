@@ -48,7 +48,7 @@ def start_delivery(request, user_id=0, order_id=0):
         redirect('login')
     try:
         details = get_object_or_404(User, id=user_id)
-        if details.is_trial == 0:
+        if details.is_trial == False:
             return render(request, 'school_email_page.html')
         else:
             order_detail = delivery_info.objects.get(id=order_id)
