@@ -1,11 +1,28 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8"/>
+    <link rel="stylesheet" href="{% static 'css/chat.css' %}">
     <title>Chat Rooms</title>
 </head>
 <body>
-    What chat room would you like to enter?<br>
+    <div id="main-container">
+        <div id="chat-container">
+            <div id="top-title-area">
+                <img src="{% static 'img/back-icon.svg' %}" onclick="history.back()" alt="뒤로가기">
+                <div class="top-title">
+                    <p>채팅 목록</p>
+                </div>
+                <div class="top-white-space"></div>
+            </div>
+            <div id="center-area">
+
+            </div>
+        </div>
+    </div>
+</body>
+    <!-- What chat room would you like to enter?<br>
     <input id="room-name-input" type="text" size="100"><br>
     <input id="room-name-submit" type="button" value="Enter">
     {{ user_id|json_script:"userID" }}
@@ -28,5 +45,5 @@
             window.location.pathname = '/chat/' + user1ID + '_' + user2ID + '/';
         };
     </script>
-</body>
+</body> -->
 </html>
