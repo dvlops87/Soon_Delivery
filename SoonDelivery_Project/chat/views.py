@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from .models import Chat, Contents
 
 def chat(request, user_id = 0):
   if user_id == 0:
@@ -13,5 +14,6 @@ def room(request, room_name):
         'room_name': room_name
     })
 
-def create_room(request):
-  new_room = 
+# def create_room(request, room_id):
+#   new_room = Chat()
+#   new_room.room_id = 

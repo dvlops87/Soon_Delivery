@@ -25,6 +25,7 @@ account = 'account'
 
 
 urlpatterns = [
+    # path('실제 보이는 url', 뷰 메서드, name = '템플릿에서 부르는 액션 이름'),
     path('admin/', admin.site.urls),
     # path('', a.home, name="home"),
     path('', a.user_login, name='login'),
@@ -48,6 +49,7 @@ urlpatterns = [
     # path('', d.welcome, name="welcome"),
     path('chat/<str:user_id>', c.chat, name="chat"),
     path('chat/str:user_id/<str:room_name>/', c.room, name="room"),
+    # path('chat/create_room/', c.create_room, name="create_room"),
     path('main/', d.home, name="home"),
     path('order/<str:user_id>', d.order, name='order'),
     path('order_delivery/<str:order_id>', d.order_delivery, name="order_delivery"),

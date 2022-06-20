@@ -28,8 +28,6 @@
             <!-- top-title-area 끝 -->
             <!-- 중앙 컨테이너 시작 -->
             <div id="center-container">
-                <!-- 채팅방 id는 주문번호_배달자id로 생성된다. -->
-                <p id="room-id">{{order_list.id}}_{{user.id}}</p>
                 <p class="description">{{order_list.delivery_owner.nickname}} 님의 주문서</p>
                 <div id="order-area">
                     <div>
@@ -63,7 +61,12 @@
             <!-- 정상적인 경우 -->
             {% else %}
                 <!-- <a href="{% url 'start_delivery' user.id order_list.id %}"> -->
-                    <button class="blue big-button" id="onclick_order" onclick="">배달하기</button>
+                    <form method="POST" name="form" >
+                        {% csrf_token %}
+                        <!-- 채팅방 id는 주문번호_배달자id로 생성된다. -->
+                        <input id="room-id" type="text" name="room_id" value="{{order_list.id}}_{{user.id}}">
+                        <button class="blue big-button" id="onclick_order" onclick="">배달하기</button>
+                    </form>
                 <!-- </a> -->
             {% endif %}
         <!-- 주문하기 폼 끝 -->
