@@ -61,7 +61,7 @@
             <!-- 정상적인 경우 -->
             {% else %}
                 <!-- <a href="{% url 'start_delivery' user.id order_list.id %}"> -->
-                    <form method="POST" name="form" >
+                    <form id="room-id-form" method="POST" name="form" >
                         {% csrf_token %}
                         <!-- 채팅방 id는 주문번호_배달자id로 생성된다. -->
                         <input id="room-id" type="text" name="room_id" value="{{order_list.id}}_{{user.id}}">
