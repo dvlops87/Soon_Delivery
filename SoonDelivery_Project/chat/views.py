@@ -14,6 +14,8 @@ def room(request, room_name):
         'room_name': room_name
     })
 
-# def create_room(request, room_id):
-#   new_room = Chat()
-#   new_room.room_id = 
+def create_room(request):
+  new_room = Chat()
+  new_room.room_id = request.POST["room_id"]
+  new_room.save()
+  return redirect('chat')
