@@ -55,7 +55,7 @@ def activate(request, uid64, token):
     else:
         return HttpResponse('비정상적인 접근입니다.')
 
-def user_signup(request):    
+def user_signup(request):
     if request.method == "POST" :
         try :
             user = User.objects.create_user(
