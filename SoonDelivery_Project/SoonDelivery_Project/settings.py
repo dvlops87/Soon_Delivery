@@ -142,7 +142,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 # 메일을 호스트하는 서버
 EMAIL_PORT = 587
 # gmail과의 통신하는 포트
-EMAIL_HOST_USER = 'eqholic1125@gmail.com'
+EMAIL_HOST_USER = 'chc981125@gmail.com'
 # 발신할 이메일
 EMAIL_HOST_PASSWORD = 'ihdaucelajlybnec'
 # 발신할 메일의 비밀번호
