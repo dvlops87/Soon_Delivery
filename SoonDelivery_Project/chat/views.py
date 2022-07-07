@@ -15,7 +15,11 @@ def room(request, room_name):
     })
 
 def create_room(request):
-  new_room = Chat()
-  new_room.room_id = request.POST["room_id"]
-  new_room.save()
-  return redirect('chat')
+  if request.method == 'POST':
+    new_room = Chat()
+    new_room.last_content = "123"
+    # new_room.room_id = request.POST["room_id"]
+    new_room.save()
+    return render(request, 'chat/chat.html')
+  else:
+    return render(requset, 'delivery.html')
