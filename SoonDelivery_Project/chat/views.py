@@ -1,4 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
+from account.models import User
 from .models import Chat, Contents
 
 def chat(request, user_id = 0):
@@ -14,10 +15,10 @@ def room(request, room_name):
         'room_name': room_name
     })
 
-def create_room(request):
+def create_room(request, user_id):
   if request.method == 'POST':
     new_room = Chat()
-    new_room.last_content = "123"
+    # new_room.user1 = User.objects.get(id=user_id)
     # new_room.room_id = request.POST["room_id"]
     new_room.save()
     return render(request, 'chat/chat.html')
