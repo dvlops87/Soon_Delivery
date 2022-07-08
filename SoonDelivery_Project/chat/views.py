@@ -15,11 +15,12 @@ def room(request, room_name):
         'room_name': room_name
     })
 
-def create_room(request, user_id):
+def create_room(request, user_id, delivery_owner_id):
   if request.method == 'POST':
     new_room = Chat()
-    # new_room.user1 = User.objects.get(id=user_id)
-    # new_room.room_id = request.POST["room_id"]
+    new_room.user1 = User.objects.get(id=user_id)
+    new_room.user2 = User.objects.get(id=delivery_owner_id)
+    new_room.room_id = request.POST["room_id"]
     new_room.save()
     return render(request, 'chat/chat.html')
   else:
