@@ -22,6 +22,8 @@ def create_room(request, user_id, delivery_owner_id):
     new_room.user2 = User.objects.get(id=delivery_owner_id)
     new_room.room_id = request.POST["room_id"]
     new_room.save()
-    return render(request, 'chat/chat.html')
+    return redirect( 'chat', {
+      'user_id': user_id
+    })
   else:
     return render(requset, 'delivery.html')
