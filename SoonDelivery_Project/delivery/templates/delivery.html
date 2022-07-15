@@ -61,11 +61,13 @@
             <!-- 정상적인 경우 -->
             {% else %}
                 <!-- <a href="{% url 'start_delivery' user.id order_list.id %}"> -->
-                    <form id="room-id-form" method="POST" name="form" action="{% url 'create_room' user.id order_list.delivery_owner.id %}" >
+                    <form id="room-id-form" method="POST" name="form" action="{% url 'create_room' %}" >
                         {% csrf_token %}
+                        <input class="hiding" type="text" name="user1_id" value="{{user.id}}">
+                        <input class="hiding" type="text" name="user2_id" value="{{order_list.delivery_owner.id}}">
+                        <input class="hiding" type="text" name="order_id" value="{{order_list.id}}">
                         <!-- 채팅방 id는 주문번호_배달자id로 생성된다. -->
-                        <input id="room-id" type="text" name="room_id" value="{{order_list.delivery_owner.id}}_{{user.id}}">
-                        <!-- {{order_list.id}}_{{user.id}} -->
+                        <input class="hiding" type="text" name="room_id" value="{{order_list.id}}_{{user.id}}">
                         <button class="blue big-button" id="onclick_order" onclick="">배달하기</button>
                     </form>
                 <!-- </a> -->
@@ -80,10 +82,10 @@
     <!-- 메인컨테이너 끝 -->
     <script>
         // 위 배달하기 버튼 a태그 지우고 배달하기 누르면 채팅으로 감
-        document.querySelector('#onclick_order').onclick = function(e) {
-            var roomId = document.querySelector('#room-id').innerText;
-            // window.location.pathname = '/chat/' + roomId + '/';
-        };
+        // document.querySelector('#onclick_order').onclick = function(e) {
+        //     var roomId = document.querySelector('#room-id').innerText;
+        //     window.location.pathname = '/chat/' + roomId + '/';
+        // };
     </script>
     <!-- footer 시작 -->
     <footer>
