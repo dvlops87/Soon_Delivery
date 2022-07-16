@@ -19,7 +19,7 @@ def room(request, room_name):
 def create_room(request):
   if request.method == 'POST':
     new_room = Chat()
-    new_room.location = get_object_or_404(delivery_info, pk=request.POST["order_id"]).delivery_location
+    new_room.location = get_object_or_404(delivery_info, pk=request.POST["order_id"]).store_location
     new_room.user1 = User.objects.get(id = request.POST["user1_id"]) # 배달자(본인)
     new_room.user2 = User.objects.get(id = request.POST["user2_id"]) # 주문자
     new_room.room_id = request.POST["room_id"]

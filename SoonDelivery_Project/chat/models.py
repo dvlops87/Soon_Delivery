@@ -9,8 +9,8 @@ class Chat(models.Model):
   user1 = models.ForeignKey('account.User', on_delete=CASCADE, default='', related_name='user1')
   user2 = models.ForeignKey('account.User', on_delete=CASCADE, default='', related_name='user2')
   
-  def __str__(slef):
-    return str()
+  def __str__(self):
+    return str(self.location)
 
 class Contents(models.Model):
   room= models.ForeignKey('chat.Chat', on_delete=CASCADE, default='', related_name='room')
