@@ -17,7 +17,13 @@
                 <div class="top-white-space"></div>
             </div>
             <div id="center-area">
-
+                {% for room in rooms %}
+                <div class="room-area">
+                    <p class="room-name">
+                        방 제목 : {{room.location}}
+                    </p>
+                </div>
+                {% endfor %}
             </div>
         </div>
     </div>
