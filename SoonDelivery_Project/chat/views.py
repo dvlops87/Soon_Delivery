@@ -25,8 +25,10 @@ def create_room(request):
     new_room.user2 = User.objects.get(id = request.POST["user2_id"]) # 주문자
     new_room.room_id = request.POST["room_id"]
     new_room.save()
+    
     return render(request, 'chat/chat.html', {
       'user_id': new_room.user1_id
+
     })
   else:
     return render(requset, 'delivery.html')
