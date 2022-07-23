@@ -53,6 +53,6 @@ urlpatterns = [
     path('main/', d.home, name="home"),
     path('order/<str:user_id>', d.order, name='order'),
     path('order_delivery/<str:order_id>', d.order_delivery, name="order_delivery"),
-    path('start_delivery/<int:user_id>/<str:order_id>', d.start_delivery, name="start_delivery"),
+    path('start_delivery/<int:room_id>/<int:user_id>/<str:order_id>', d.start_delivery, name="start_delivery"),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
