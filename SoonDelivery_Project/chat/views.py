@@ -32,17 +32,14 @@ def create_room(request):
         new_room.user2 = User.objects.get(id = request.POST["user2_id"]) # 주문자
         new_room.save()
 
-        return render(request, 'chat/chat.html', {
-        'user_id': new_room.user1_id
-      })
+        return redirect('start_delivery', room_id=new_room.id, user_id=request.POST["user1_id"], order_id=request.POST["order_id"])
       else: #채팅방이 있는 경우 2
         print("3에서 걸림")
-        return redirect(start_delivery)
+        return redirect('start_delivery', room_id=chatings[0].id,  user_id=request.POST["user1_id"], order_id=request.POST["order_id"])
 
     else: # 채팅방이 있는 경우 1
       print("4에서 걸림")
-      return render(request, 'delivery.html')
+      return redirect('start_delivery',  room_id=chatings[0].id, user_id=request.POST["user1_id"], order_id=request.POST["order_id"])
 
   else:
-    print("5에서 걸림")
     return render(request, 'delivery.html')
