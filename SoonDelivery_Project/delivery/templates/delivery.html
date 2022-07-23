@@ -60,17 +60,15 @@
                 </a>
             <!-- 정상적인 경우 -->
             {% else %}
-                <!-- <a href="{% url 'start_delivery' user.id order_list.id %}"> -->
+                <a href="{% url 'start_delivery' user.id order_list.id %}">
                     <form id="room-id-form" method="POST" name="form" action="{% url 'create_room' %}" >
                         {% csrf_token %}
                         <input class="hiding" type="text" name="user1_id" value="{{user.id}}">
                         <input class="hiding" type="text" name="user2_id" value="{{order_list.delivery_owner.id}}">
                         <input class="hiding" type="text" name="order_id" value="{{order_list.id}}">
-                        <!-- 채팅방 id는 주문번호_배달자id로 생성된다. -->
-                        <input class="hiding" type="text" name="room_id" value="{{order_list.id}}_{{user.id}}">
                         <button class="blue big-button" id="onclick_order" onclick="">배달하기</button>
                     </form>
-                <!-- </a> -->
+                </a>   
             {% endif %}
         <!-- 주문하기 폼 끝 -->
             <!-- 여백 시작 -->
